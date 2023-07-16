@@ -1,0 +1,36 @@
+Comandos Git
+
+Git config —global user.name “Seu Nome”
+Git config —global. user.email “SeuEmail@Mail.com”
+Git help {comando}
+Git {comando} —help
+Git init // Inicializar repositório
+Git clone <URL>  // Clona repositório
+Git add // Monitorar um ou vários novos arquivos
+Git status // Usado para determinar estado dos arquivos
+Git diff // Compara commit atual com ultimo commit para mostrar modificações feitas
+Git diff —cached // O que foi modificado que irá no próximo commit
+Git commit -m “Mensagem” //  Armazena o conteúdo staged atual em um novo commit junto com uma mensagem.
+Git commit -a m “Mensagem” // Adiciona arquivos verminados mesmo não-staged
+Git commit —amend // Sobreescreve o ultimo commit
+Git reset —hard HEAD~1 // Volta ao ultimo commit e apaga arquivos do Stage
+Git reset —soft HEAD~1 // Volta ao ultimo commit e mantém modificações em Stage
+Git reset —hard XXXXXX // Volta para o commit com a hash XXXXXXXXX
+Git log —oneline // Mostra histórico de commit com hash
+Git ls-files // Mostra arquivos comutados no repositório
+Git Clean // Remove arquivos untracked do diretório atual
+
+Recuperar commit apagado pelo git reset 
+	Git reflog // Visualizar os Hashs
+	Git merge {hash} // Aplicar
+
+Git rm -f {arquivo} // Repositórios SEM COMMIT. Remove o arquivo que está sendo monitorado e remove arquivo do diretório para não ve-lo como untracked.
+
+Git restore —cached {arquivo} // Repositórios COM COMMT. Remove o arquivo que está sendo monitorado e remove arquivo do diretório para não ve-lo como untracked.
+
+Git remote -v  // Mostra o caminho de push e fetch
+Git remote add origin <URL> // Adiciona um repositório remoto
+Git remote set-url origin <URL> // Modifica o caminho de repositório atual
+
+Git pull // Atualiza repositório local de acordo com repositório remoto associado
+Git Branch -m main // Renomeia a branch principal de Master(Exemplo) para Main
