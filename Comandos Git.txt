@@ -10,13 +10,16 @@ Git add // Monitorar um ou vários novos arquivos
 Git status // Usado para determinar estado dos arquivos
 Git diff // Compara commit atual com ultimo commit para mostrar modificações feitas
 Git diff —cached // O que foi modificado que irá no próximo commit
+git diff <tag1> <tag2> // Compara as mudanças de duas tags
 Git commit -m “Mensagem” //  Armazena o conteúdo staged atual em um novo commit junto com uma mensagem.
 Git commit -a m “Mensagem” // Adiciona arquivos verminados mesmo não-staged
 Git commit —amend // Sobreescreve o ultimo commit
-Git reset —hard HEAD~1 // Volta ao ultimo commit e apaga arquivos do Stage
-Git reset —soft HEAD~1 // Volta ao ultimo commit e mantém modificações em Stage
+Git reset —hard HEAD~<quantidade de commits para voltar> // Volta ao commit indicado e apaga o restante
+Git reset —soft HEAD~1 // Reverte o ultimo commit e mantém modificações em Stage
+Git reset --mixed HEAD~1 // Reverte o ultimo commit e desfaz o Stage (necessario fazer git add novamente)
 Git reset —hard XXXXXX // Volta para o commit com a hash XXXXXXXXX
 Git log —oneline // Mostra histórico de commit com hash
+Git log <nome da branch> --oneline // Mostra histórico de alterações de outra branch
 Git ls-files // Mostra arquivos comutados no repositório
 Git Clean // Remove arquivos untracked do diretório atual
 
@@ -26,11 +29,61 @@ Recuperar commit apagado pelo git reset
 
 Git rm -f {arquivo} // Repositórios SEM COMMIT. Remove o arquivo que está sendo monitorado e remove arquivo do diretório para não ve-lo como untracked.
 
-Git restore —cached {arquivo} // Repositórios COM COMMT. Remove o arquivo que está sendo monitorado e remove arquivo do diretório para não ve-lo como untracked.
+Git restore —cached {arquivo} // Repositórios COM COMMIT. Remove o arquivo que está sendo monitorado e remove arquivo do diretório para não ve-lo como untracked.
 
 Git remote -v  // Mostra o caminho de push e fetch
 Git remote add origin <URL> // Adiciona um repositório remoto
 Git remote set-url origin <URL> // Modifica o caminho de repositório atual
 
 Git pull // Atualiza repositório local de acordo com repositório remoto associado
-Git Branch -m main // Renomeia a branch principal de Master(Exemplo) para Main
+git pull --rebase // trás as mudanças do rep. remoto e adiciona a branch atual, para evitar merge
+Git push -u origin <nome da branch> // Envia os arquivos locais para o repositório remoto (Branch não mapeada)
+Git push // Caso a Branch esteja mapeada
+git push --delete origin <nome da branch> ou <tag> // Deleta uma Branch ou tag no repositório remoto
+git push origin <nometag> // Envia tag para github
+git push --tags // Envia todas as tags para o repositorio remoto
+git push --force // Envia para o repositório remoto mesmo se o rep. local estiver alguns commit atrás
+git push --force-with-lease // faz um push forçado sem perder alterações feitas
+Git Branch -m <nome da branch> // Renomeia a branch escolhida
+Git Branch -m <nome da branch antigo> <nome branch nova> // Renomeia a branch escolhida a partir de outra branch
+
+sshkeygen // Gera uma chave ssh na maquina local
+
+Utilizar outra chave SSH
+  eval $(ssh-agent)
+  ssh-add ~/.ssh/<nomedachave>
+
+git branch
+git branch --list
+git branch <nome da branch nova> 
+git branch -d // Deleta alguma Branch
+git branch -D // Força remoção branch
+git branch --no-merged // Mostra quais branchs ainda não foram "Mergeadas"
+git checkout // Troca de branch
+git checkout -b <nome da branch nova> // Cria e entra na branch
+git switch <nome da branch nova> // faz a mesma coisa que checkout -b
+git switch - // Volta para a ultima branch
+git checkout -f // Desfaz totalmente as alterações rastreadas e muda de branch
+git merge <nome da branch> // faz a junção da branch indicada com a branch atual
+git merge --abort // aborta o processo de merge 
+git tag <nome tag> // cria uma tag na branch atual (Tag lightweight)
+git tag -a -m "Mensagem" <nome tag> // Tag mais completa com descrição
+git tag -n // Mostra as tags com suas descrições
+git tag <nome tag> <identificação commit> // cria uma tag em outro commit
+git show <tag> // Mostra o commit com informações da tag
+git stash // Salva uma modificação não commitada
+git stash list // Lista todas as modificações salvas no stash
+git stash apply ou git stash apply stash@{numero stash}// Restaura a modificação 0 do stash ou uma modificação escolhida
+git stash pop // Aplica a modificação e remove do stash
+git stash drop // remove um stash da lista
+git stash clear // Limpa todo o stash
+git stash branch <nome da branch>  ou git stash branch <nome da branch> <numero do stash>// Cria uma nova branch com o conteudo da stash
+git revert <Hash>  ou git revert <hash> --no-edit // cria um novo commit desfazendo as mudanças do ultimo
+git rebase <branch> // Troca a base da branch atual para evitar merge
+git rebase -i <numero de commit a fundir> // Funde commits em apenas um commit
+git fetch origin <branch> // trás uma branch do rep. remoto
+git cherry-pick <hash> // Pega um commit especifico de outra branch e trás para a branch atual
+git bisect start, git bisect good <hash do commit bom>, git bisect bad <commit mal> // faz a busca entre os commits para detectar onde deu problema
+git bisect reset // para o bisect
+git config --global alias.<letra desejada> <comando ex: status> ou <comando com 2 palavras: 'log --oneline'> // Cria atalhos para comandos do git
+git config --global --unset alias.<letra desejada> // Exclui um alias
