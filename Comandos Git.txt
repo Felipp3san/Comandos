@@ -12,7 +12,7 @@ Git diff // Compara commit atual com ultimo commit para mostrar modificações f
 Git diff —cached // O que foi modificado que irá no próximo commit
 git diff <tag1> <tag2> // Compara as mudanças de duas tags
 Git commit -m “Mensagem” //  Armazena o conteúdo staged atual em um novo commit junto com uma mensagem.
-Git commit -a m “Mensagem” // Adiciona arquivos verminados mesmo não-staged
+Git commit -a m “Mensagem” // Executa commando add e depois faz commit com mensagem.
 Git commit —amend // Sobreescreve o ultimo commit
 Git reset —hard HEAD~<quantidade de commits para voltar> // Volta ao commit indicado e apaga o restante
 Git reset —soft HEAD~1 // Reverte o ultimo commit e mantém modificações em Stage
@@ -47,7 +47,7 @@ git push --force-with-lease // faz um push forçado sem perder alterações feit
 Git Branch -m <nome da branch> // Renomeia a branch escolhida
 Git Branch -m <nome da branch antigo> <nome branch nova> // Renomeia a branch escolhida a partir de outra branch
 
-sshkeygen // Gera uma chave ssh na maquina local
+sshkeygen ou ssh-keygen // Gera uma chave ssh na maquina local
 
 Utilizar outra chave SSH
   eval $(ssh-agent)
